@@ -2,21 +2,19 @@ from django.db.models import Sum
 from rest_framework.generics import RetrieveAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.viewsets import ModelViewSet
 
 from bitacora.models import Bitacora
 from bitacora.api.serializer import BitacoraSerializer
 
 
-class BitacoraView(ModelViewSet):
+class BitacoraView(ListCreateAPIView):
     queryset = Bitacora.objects.all()
     serializer_class = BitacoraSerializer
     
     def perform_create(self, serializer):
-        print(serializer.data)
-        print(serializer.validated_data)
-        print("<"*20)
-        serializer.save()
+        print(f"resultado de perform_create:{serializer.validated_data}")
+    #   print("<"*20)
+        #serializer.save()
 
     def create(self, request, *args, **kwargs):
         print("#"*20)
