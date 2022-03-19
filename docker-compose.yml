@@ -1,0 +1,41 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    container_name: sinergy_db
+    env_file: '.db.env'
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+      args:
+        APP_USER: 'sinergyuser'
+    container_name: sinergy_backend
+    env_file: 
+      - '.backend.env'
+      - '.db.env'
+    expose:
+      - 8000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  proxy:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        CONFIG_ROOT: './docker/nginx/dev'
+    container_name: sinergy_proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
