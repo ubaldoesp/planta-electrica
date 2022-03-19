@@ -42,4 +42,4 @@ Here you can find my rest API:
 
 
 ## Database diagram
-![dbdiagram](docs/db_diagram.png)
+![dbdiagram](docs/db_diagram.jpg)
