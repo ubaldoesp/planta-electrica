@@ -1,4 +1,3 @@
-from email.policy import default
 from django.urls import path
 
 from Dispositivo.api.views import DispositivoViewSet, DispositivoDetailView

@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Dispositivo',
-    'bitacora'
+    'bitacora',
+    'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
